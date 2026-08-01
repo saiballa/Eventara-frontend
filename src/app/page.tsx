@@ -1,4 +1,5 @@
 import Image from "next/image";
+import "../../public/images/logo.png";
 
 export default function Home() {
   return (
