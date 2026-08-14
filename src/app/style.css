@@ -1,59 +1,73 @@
 @font-face {
     font-family: "Oswald";
-    src: url("../fonts/Oswald-Regular.ttf") format("truetype");
+    src: url("../../public/fonts/Oswald-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Oswald";
-    src: url("../fonts/Oswald-SemiBold.ttf") format("truetype");
+    src: url("../../public/fonts/Oswald-SemiBold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Oswald";
-    src: url("../fonts/Oswald-medium.ttf") format("truetype");
+    src: url("../../public/fonts/Oswald-medium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Oswald";
-    src: url("../fonts/Oswald-Bold.ttf") format("truetype");
+    src: url("../../public/fonts/Oswald-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+    src: url("../../public/fonts/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Medium.ttf") format("truetype");
+    src: url("../../public/fonts/Poppins-Medium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+    src: url("../../public/fonts/Poppins-SemiBold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../fonts/Poppins-Bold.ttf") format("truetype");
+    src: url("../../public/fonts/Poppins-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
 }
 
+
+
+@font-face {
+    font-family: "Outfit";
+    src: url("../../public/fonts/OutfitRegular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Outfit";
+    src: url("../../public/fonts/OutfitSemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
 
 
 :root {
@@ -72,6 +86,10 @@
     --poppins-semibold: "Poppins", sans-serif;
 
     --poppins-bold: "Poppins", sans-serif;
+
+    --outfit-regular: "Outfit", sans-serif;
+
+    --outfit-semibold: "Outfit", sans-serif;
 
     /* ELECTRIC VIOLET */
     --color-electric-50: #FBF5FF;
@@ -162,6 +180,16 @@
 
 }
 
+.outwit-regular {
+    font-family: var(--outfit-regular);
+    font-weight: 400;
+
+}
+.outfit-semibold {
+    font-family: var(--outfit-semibold);
+    font-weight: 600;
+}
+
 
 .container {
     max-width: 1350px;
@@ -227,7 +255,7 @@
 .ticket-section {
     background:
         linear-gradient(hsla(0, 0%, 0%, 0.451), rgba(0, 0, 0, .45)),
-        url("../images/tickits-bg.png");
+        url("../../public/images/tickits-bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -480,6 +508,47 @@ footer::before {
     color: var(--color-electric-600);
 }
 
+
+.auth-modal{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:9999;
+
+    padding:20px;
+}
+
+.auth-modal.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.auth-modal-content{
+
+    width:100%;
+    max-width:767px;
+
+    max-height:92vh;
+
+    overflow-y:auto;
+
+}
 
 
 
@@ -748,4 +817,565 @@ backdrop-filter: blur(24px);
         overflow:hidden;
         line-height:1.5;
     }
+}
+
+
+
+
+
+/* ===========================================
+        long cared
+===========================================*/
+/* ===========================================
+        FILM STRIP SECTION
+===========================================*/
+
+/* ===========================================
+        FILM STRIP
+===========================================*/
+
+.film-strip-wrapper{
+    position:relative;
+
+    max-width:clamp(360px,52vw,650px);
+    height:5554px;
+
+    overflow:hidden;
+
+    border-radius:26px;
+
+    background:#1A1A1A;
+
+    isolation:isolate;
+}
+
+.film-strip-rail{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:clamp(30px,4vw,46px);
+    background:#1A1A1A;
+    z-index:5;
+}
+
+.film-strip-left{
+    left:0;
+}
+
+.film-strip-right{
+    right:0;
+}
+
+.film-strip-holes{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+    padding:10px 0;
+}
+
+.film-strip-holes span{
+    width:clamp(25px,2.4vw,30px);
+
+    height:clamp(25px,2.4vw,30px);
+
+    border-radius:clamp(6px,0.8vw,9px);
+    background:#fff;
+    flex-shrink:0;
+}
+
+.film-strip-content{
+
+    position:absolute;
+
+    top:0;
+    left:clamp(30px,4vw,46px);
+
+    right:clamp(30px,4vw,46px);
+    bottom:0;
+
+    background:#fff;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    padding:18px;
+    padding-bottom:40px;
+
+    scroll-behavior:smooth;
+
+    overscroll-behavior:contain;
+
+    -webkit-overflow-scrolling:touch;
+
+    scrollbar-width:none;
+}
+
+.film-strip-content::-webkit-scrollbar{
+    display:none;
+}
+
+
+@media (max-width:1024px){
+
+    .film-strip-wrapper{
+        max-width:500px;
+        height:5554px;
+    }
+
+    .event-film-card{
+        height:700px;
+        flex:0 0 700px;
+    }
+
+    .event-film-image{
+        height:460px;
+    }
+}
+
+@media (max-width:768px){
+
+    .film-strip-wrapper{
+        max-width:360px;
+        height:4800px;
+    }
+
+    .event-film-card{
+        height:620px;
+        flex:0 0 620px;
+    }
+
+    .event-film-image{
+        height:360px;
+    }
+}
+
+/* ===========================================
+        EVENT FILM CARD
+===========================================*/
+
+.event-film-card{
+
+    background:#fff;
+
+    /* border-radius:20px; */
+
+    overflow:hidden;
+
+    height:clamp(620px,66vw,782px);
+
+    flex:0 0 clamp(620px,66vw,782px);
+}
+
+.event-film-image{
+
+    height:clamp(300px,45vw,530px);
+    width:100%;
+    overflow:hidden;
+    flex-shrink:0;
+    border-radius:20px;
+
+}
+
+.event-film-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+
+    display:block;
+
+    transition:.45s;
+    border-radius:20px;
+
+}
+
+/* .event-film-card:hover img{
+
+    transform:scale(1.08);
+
+} */
+
+.event-film-body{
+
+    padding:clamp(10px,2vw,18px);
+
+}
+.event-date{
+    font-size:clamp(14px,1.6vw,18px);
+}
+.event-title{
+    font-size:clamp(26px,3.4vw,40px);
+    line-height:normal;
+}
+.event-location,
+.event-details{
+    font-size:clamp(13px,1.4vw,16px);
+}
+.event-price{
+    font-size:clamp(18px,1.8vw,20px);
+}
+.event-from{
+    font-size:clamp(18px,1.8vw,20px);
+}
+.event-add-btn{
+
+    width:clamp(35px,5vw,50px);
+
+    height:clamp(35px,5vw,50px);
+
+    font-size:clamp(16px,2vw,20px);
+
+    border-radius:999px;
+
+    background:#A437E6;
+
+    color:#fff;
+
+    
+
+    transition:.35s;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.event-add-btn:hover{
+
+    transform:rotate(90deg) scale(1.08);
+
+}
+
+@media(max-width:768px){
+
+    .event-film-body{
+
+        padding:18px;
+
+    }
+
+    .event-film-body h3{
+
+        font-size:30px;
+
+    }
+
+    .event-add-btn{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:18px;
+
+    }
+
+}
+
+/* About us */
+/* brand logo swiper */
+  .brandLogoSwiper .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+
+/* swiper */
+  .eventaraSwiper .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+
+/* My-tickits */
+
+   /* Hide scrollbar */
+
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-none {
+            scrollbar-width: none;
+        }
+
+        /* Active tab */
+
+        .active-ticket-tab {
+            border-color: #f2458e !important;
+            color: #e12169 !important;
+        }
+
+        /* Main ticket perforation */
+
+        .ticket-perforation {
+            background: radial-gradient(circle at 0 18px,
+                    #fff 0 15px,
+                    transparent 15.5px) 0 0 / 16px 34px repeat-y;
+        }
+
+        /* Small ticket perforation */
+
+        .mini-perforation {
+            background: radial-gradient(circle at 0 8px,
+                    #fff 0 7px,
+                    transparent 7.5px) 0 0 / 9px 16px repeat-y;
+        }
+
+        /* Small QR */
+
+        .mini-qr {
+            border: 1px solid #fff;
+
+            background:
+                linear-gradient(90deg,
+                    #111 18%,
+                    transparent 18% 34%,
+                    #111 34% 50%,
+                    transparent 50% 66%,
+                    #111 66% 82%,
+                    transparent 82%),
+                linear-gradient(#111 18%,
+                    transparent 18% 34%,
+                    #111 34% 50%,
+                    transparent 50% 66%,
+                    #111 66% 82%,
+                    transparent 82%),
+                #fff;
+        }
+
+        /* Mobile navbar space */
+
+        @media (max-width: 639px) {
+            #navbar-placeholder {
+                height: 72px;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashbord */
+/* =========================================================
+   EVENTARA DASHBOARD
+========================================================= */
+
+.dashboard-page {
+
+    min-height: 100vh;
+
+    background: #f7f7f8;
+
+    color: #252525;
+
+}
+
+
+.dashboard-page * {
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.dashboard-page ::-webkit-scrollbar {
+
+    width: 6px;
+
+    height: 6px;
+
+}
+
+
+.dashboard-page ::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.dashboard-page ::-webkit-scrollbar-thumb {
+
+    background: #d3d3d3;
+
+    border-radius: 999px;
+
+}
+
+
+.dashboard-page ::-webkit-scrollbar-thumb:hover {
+
+    background: #b5b5b5;
+
+}
+
+
+/* =========================================================
+   CHART SIZES
+========================================================= */
+
+#ticketChart {
+
+    width: 225px !important;
+
+    height: 225px !important;
+
+}
+
+
+#salesChart {
+
+    width: 100% !important;
+
+    height: 270px !important;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+#recentEventsRows > div:last-child {
+
+    border-bottom: none;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+#profileMenu {
+
+    animation: dashboardProfile .18s ease;
+
+}
+
+
+@keyframes dashboardProfile {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(5px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1023px) {
+
+    .dashboard-page {
+
+        overflow-x: hidden;
+
+    }
+
+}
+
+
+@media (max-width: 639px) {
+
+    #ticketChart {
+
+        width: 200px !important;
+
+        height: 200px !important;
+
+    }
+
+
+    #salesChart {
+
+        height: 240px !important;
+
+    }
+
 }
