@@ -11,7 +11,8 @@ import InspiringMindsSection from "../components/landing/inspireMinds";
 import MomentsGallerySection from "../components/landing/momentsGallery";
 import NewsAndUpdateSection from "../components/landing/news";
 import SponscorsSection from "../components/landing/sponcors";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { getProfile } from "@/api/api.call";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -19,6 +20,22 @@ export default function Home() {
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
   };
+
+
+
+ useEffect(()=>{
+  const profileData = async()=>{
+  try {
+    const profile = await getProfile();
+
+    console.log("🔥 PROFILE SUCCESS", profile);
+  } catch (error) {
+    console.log("🔥 PROFILE CATCH", error);
+  }
+ }
+
+ profileData();
+ },[]);
 
   return (
     <>

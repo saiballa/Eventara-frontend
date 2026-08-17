@@ -1,7 +1,20 @@
 "use client";
 import EventSlider from "@/app/components/events/slider";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import CategoriesSection from "@/app/components/landing/categories";
+import RailEventsSection from "@/app/components/events/railcards";
+import BiggestReleasesSection from "@/app/components/landing/biggestReleases";
 
 export default function EventsPage() {
+   const searchParams = useSearchParams();
+
+  const categoryId = searchParams.get("categoryId");
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryId || "all");
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+  };
 
   return (
     <>
@@ -15,8 +28,21 @@ export default function EventsPage() {
           </div>
         </div>
       </div>
+      {/* slider */}
+      <EventSlider />
 
-      <EventSlider/>
+      <CategoriesSection
+        selectedCategory={selectedCategory}
+        handleCategoryChange={handleCategoryChange}
+      />
+
+      {/* Railcards Events Section */}
+      <RailEventsSection selectedCategory={selectedCategory} />
+
+      {/* Biggest movie Releases */}
+      <div className="pb-[100px]">
+  <BiggestReleasesSection/>
+</div>
     </>
   );
 }

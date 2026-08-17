@@ -2,22 +2,14 @@
 import Link from "next/link";
 import { Heart, MapPinned, Plus } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useQuery } from "@tanstack/react-query";
-import { FeaturedEventsSectionProps,EventsResponse,Event } from "@/types/type";
+import { FeaturedEventsSectionProps } from "@/types/type";
 import "swiper/css";
-import { getEventsByCategories } from "@/api/api.call";
+import { useEvents } from "@/customHooks/useEvents";
 
 export default function FeaturedEventsSection({
   selectedCategory,
 }: FeaturedEventsSectionProps) {
-  const {
-    data: events = [],
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["events", selectedCategory],
-    queryFn: () => getEventsByCategories(selectedCategory),
-  });
+  const { data: events = [], isLoading, isError } = useEvents(selectedCategory);
 
   const featuredEvents = events.slice(0, 4).map((event) => {
     const eventDate = new Date(event.date);
@@ -52,7 +44,11 @@ export default function FeaturedEventsSection({
               </h2>
 
               <Link
-                href={`/events?categoryId=${selectedCategory}`}
+                href={
+                  selectedCategory
+                    ? `/events?categoryId=${selectedCategory}`
+                    : "/events"
+                }
                 className="poppins-regular text-base text-[var(--color-violetred-600)] underline"
               >
                 View Details

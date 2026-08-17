@@ -834,19 +834,19 @@ backdrop-filter: blur(24px);
         FILM STRIP
 ===========================================*/
 
-.film-strip-wrapper{
-    position:relative;
+.film-strip-wrapper {
+    position: relative;
 
-    max-width:clamp(360px,52vw,650px);
-    height:5554px;
+    width: 100%;
+    max-width: clamp(360px, 52vw, 650px);
 
-    overflow:hidden;
+    overflow: hidden;
 
-    border-radius:26px;
+    border-radius: 26px;
 
-    background:#1A1A1A;
+    background: #1A1A1A;
 
-    isolation:isolate;
+    isolation: isolate;
 }
 
 .film-strip-rail{
@@ -885,36 +885,32 @@ backdrop-filter: blur(24px);
     flex-shrink:0;
 }
 
-.film-strip-content{
+.film-strip-content {
+    position: relative;
 
-    position:absolute;
+    margin-left: clamp(30px, 4vw, 46px);
+    margin-right: clamp(30px, 4vw, 46px);
 
-    top:0;
-    left:clamp(30px,4vw,46px);
+    background: #fff;
 
-    right:clamp(30px,4vw,46px);
-    bottom:0;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
-    background:#fff;
+    display: flex;
+    flex-direction: column;
 
-    overflow-y:auto;
-    overflow-x:hidden;
+    gap: 10px;
 
-    display:flex;
-    flex-direction:column;
+    padding: 18px;
+    padding-bottom: 40px;
 
-    gap:10px;
+    scroll-behavior: smooth;
 
-    padding:18px;
-    padding-bottom:40px;
+    overscroll-behavior: contain;
 
-    scroll-behavior:smooth;
+    -webkit-overflow-scrolling: touch;
 
-    overscroll-behavior:contain;
-
-    -webkit-overflow-scrolling:touch;
-
-    scrollbar-width:none;
+    scrollbar-width: none;
 }
 
 .film-strip-content::-webkit-scrollbar{
@@ -926,7 +922,6 @@ backdrop-filter: blur(24px);
 
     .film-strip-wrapper{
         max-width:500px;
-        height:5554px;
     }
 
     .event-film-card{
@@ -943,7 +938,6 @@ backdrop-filter: blur(24px);
 
     .film-strip-wrapper{
         max-width:360px;
-        height:4800px;
     }
 
     .event-film-card{
@@ -1376,6 +1370,813 @@ backdrop-filter: blur(24px);
 
         height: 240px !important;
 
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashbord */
+/* =========================================================
+   EVENTARA DASHBOARD — FINAL
+========================================================= */
+
+.dashboard-page {
+    min-height: 100vh;
+    width: 100%;
+    background: #f4f4f4;
+    color: #252525;
+    overflow-x: hidden;
+}
+
+.dashboard-page * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+#sidebar {
+    will-change: transform;
+}
+
+#sidebar nav {
+    scrollbar-width: thin;
+    scrollbar-color: #d5d5d5 transparent;
+}
+
+#sidebar nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+#sidebar nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#sidebar nav::-webkit-scrollbar-thumb {
+    background: #d5d5d5;
+    border-radius: 999px;
+}
+
+
+.dashboard-nav {
+    transition:
+        background-color .2s ease,
+        color .2s ease;
+}
+
+.dashboard-nav.active {
+    background: #f0e5ff !important;
+    color: #8f2ce3 !important;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1024px) {
+
+    #sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 259px;
+        min-width: 259px;
+        height: 100vh;
+
+        transform: translateX(0) !important;
+    }
+
+
+    #BB,
+    .dashboard-page > main {
+        width: calc(100% - 259px);
+        margin-left: 259px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(min-width: 1024px)
+and
+(max-width: 1279px) {
+
+    #BB,
+    #CC,
+    #DD {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+
+    #metricCards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+
+    #CC > div {
+        grid-template-columns:
+            1fr !important;
+    }
+
+
+    #DD > div {
+        grid-template-columns:
+            minmax(0, 1.45fr)
+            minmax(280px, .9fr) !important;
+    }
+
+
+    #DD > div > article:last-child {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL DESKTOP
+========================================================= */
+
+@media
+(min-width: 1280px)
+and
+(max-width: 1439px) {
+
+    #CC > div {
+        grid-template-columns:
+            minmax(0, 1.55fr)
+            minmax(350px, .9fr) !important;
+    }
+
+
+    #DD > div {
+        grid-template-columns:
+            minmax(0, 1.55fr)
+            minmax(250px, .9fr)
+            minmax(250px, .9fr) !important;
+    }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px) {
+
+    #CC > div {
+        grid-template-columns:
+            minmax(0, 1.55fr)
+            minmax(390px, .9fr) !important;
+    }
+
+
+    #DD > div {
+        grid-template-columns:
+            minmax(0, 1.65fr)
+            minmax(300px, .9fr)
+            minmax(300px, .9fr) !important;
+    }
+
+}
+
+
+/* =========================================================
+   1920PX REFERENCE
+========================================================= */
+
+@media (min-width: 1920px) {
+
+    #BB,
+    #CC,
+    #DD {
+        padding-left: 27px !important;
+        padding-right: 27px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+@media (max-width: 1023px) {
+
+    #sidebar {
+        position: fixed;
+
+        left: 0;
+        top: 0;
+
+        width: min(259px, 86vw);
+        min-width: min(259px, 86vw);
+
+        height: 100dvh;
+
+        transform: translateX(-100%);
+    }
+
+
+    #BB,
+    .dashboard-page > main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+
+    #BB {
+        padding-top: 84px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
+
+#mobileOverlay {
+    transition: opacity .2s ease;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+#profileMenu {
+    animation:
+        dashboardProfile
+        .18s
+        ease;
+}
+
+@keyframes dashboardProfile {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RECENT EVENTS
+========================================================= */
+
+#recentEventsRows {
+
+    height: 232px;
+    max-height: 232px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #d5d5d5 transparent;
+}
+
+
+#recentEventsRows > div {
+
+    min-height: 58px;
+
+}
+
+
+#recentEventsRows > div:last-child {
+
+    border-bottom: none;
+
+}
+
+
+#recentEventsRows::-webkit-scrollbar {
+
+    width: 4px;
+
+}
+
+
+#recentEventsRows::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+#recentEventsRows::-webkit-scrollbar-thumb {
+
+    background: #d5d5d5;
+
+    border-radius: 999px;
+
+}
+
+
+/* =========================================================
+   TOP EVENTS
+========================================================= */
+
+#topEventsList {
+
+    height: 235px;
+    max-height: 235px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #d5d5d5 transparent;
+}
+
+
+#topEventsList > div {
+
+    min-height: 47px;
+
+}
+
+
+#topEventsList::-webkit-scrollbar {
+
+    width: 4px;
+
+}
+
+
+#topEventsList::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+#topEventsList::-webkit-scrollbar-thumb {
+
+    background: #d5d5d5;
+
+    border-radius: 999px;
+
+}
+
+
+/* =========================================================
+   CHARTS
+========================================================= */
+
+#ticketChart {
+
+    display: block;
+
+    width: 225px !important;
+    height: 225px !important;
+
+    max-width: 100%;
+
+}
+
+
+#salesChart {
+
+    display: block;
+
+    width: 100% !important;
+    height: 270px !important;
+
+    max-width: 100%;
+
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+#quickActions {
+
+    width: 100%;
+    max-width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+#metricCards article,
+#CC article,
+#DD article {
+
+    transition:
+        box-shadow .2s ease;
+
+}
+
+
+#metricCards article:hover,
+#CC article:hover,
+#DD article:hover {
+
+    box-shadow:
+        0 5px 20px
+        rgba(20, 27, 52, .09);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 767px) {
+
+    #BB,
+    #CC,
+    #DD {
+
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+
+    }
+
+
+    #ticketLegend {
+
+        width: auto;
+
+    }
+
+
+    #ticketChart {
+
+        width: 190px !important;
+        height: 190px !important;
+
+    }
+
+
+    #salesChart {
+
+        height: 240px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 479px) {
+
+    #BB,
+    #CC,
+    #DD {
+
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+
+    }
+
+
+    #metricCards {
+
+        grid-template-columns:
+            1fr !important;
+
+    }
+
+
+    #quickActions {
+
+        max-width: 300px;
+
+    }
+
+}
+/* =========================================================
+   EVENTARA DASHBOARD — FINAL FIX
+========================================================= */
+
+.dashboard-page {
+    min-height: 100vh;
+    width: 100%;
+    background: #f4f4f4;
+    color: #252525;
+    overflow-x: hidden;
+}
+
+.dashboard-page * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+#sidebar {
+    will-change: transform;
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 1024px) {
+
+    #sidebar {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+
+        width: 259px !important;
+        min-width: 259px !important;
+        height: 100vh !important;
+
+        transform: translateX(0) !important;
+
+        z-index: 100 !important;
+    }
+
+    #BB,
+    .dashboard-page > main {
+        width: calc(100% - 259px) !important;
+        margin-left: 259px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1023px) {
+
+    #sidebar {
+        position: fixed !important;
+
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+
+        width: min(259px, 86vw) !important;
+        min-width: min(259px, 86vw) !important;
+
+        height: 100dvh !important;
+
+        transform: translateX(-100%) !important;
+
+        transition:
+            transform .3s ease !important;
+
+        z-index: 100 !important;
+    }
+
+
+    #sidebar.mobile-sidebar-open {
+        transform: translateX(0) !important;
+    }
+
+
+    #BB,
+    .dashboard-page > main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+
+    #BB {
+        padding-top: 84px !important;
+    }
+
+
+    #mobileOverlay {
+        display: none;
+        z-index: 80;
+    }
+
+
+    #mobileOverlay.mobile-overlay-open {
+        display: block !important;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP OVERLAY
+========================================================= */
+
+@media (min-width: 1024px) {
+
+    #mobileOverlay {
+        display: none !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE BODY LOCK
+========================================================= */
+
+body.overflow-hidden {
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+#profileMenu {
+    animation: dashboardProfile .18s ease;
+}
+
+@keyframes dashboardProfile {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RECENT EVENTS
+========================================================= */
+
+#recentEventsRows {
+    height: 232px;
+    max-height: 232px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   TOP EVENTS
+========================================================= */
+
+#topEventsList {
+    height: 235px;
+    max-height: 235px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   QUICK ACTION
+========================================================= */
+
+#quickActions {
+    width: 100%;
+    max-width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   CHARTS
+========================================================= */
+
+#ticketChart {
+    display: block;
+
+    width: 225px !important;
+    height: 225px !important;
+
+    max-width: 100%;
+}
+
+#salesChart {
+    display: block;
+
+    width: 100% !important;
+    height: 270px !important;
+
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-none {
+    scrollbar-width: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 767px) {
+
+    #BB,
+    #CC,
+    #DD {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+
+    #ticketChart {
+        width: 190px !important;
+        height: 190px !important;
+    }
+
+
+    #salesChart {
+        height: 240px !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 479px) {
+
+    #BB,
+    #CC,
+    #DD {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+
+    #metricCards {
+        grid-template-columns: 1fr !important;
     }
 
 }

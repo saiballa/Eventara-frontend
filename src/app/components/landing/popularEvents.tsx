@@ -9,7 +9,6 @@ import { getEvents } from "@/api/api.call";
 import "swiper/css";
 import "swiper/css/free-mode";
 
-
 export default function PopularEventsSection() {
   const {
     data: events = [],
@@ -67,10 +66,7 @@ export default function PopularEventsSection() {
               watchOverflow
             >
               {[1, 2, 3, 4].map((item) => (
-                <SwiperSlide
-                  key={item}
-                  className="!w-[280px] sm:!w-[312px]"
-                >
+                <SwiperSlide key={item} className="!w-[280px] sm:!w-[312px]">
                   <div className="bg-white rounded-[20px] overflow-hidden shadow-[4px_0px_0px_0px_rgba(0,0,0,0.08)] animate-pulse">
                     <div className="relative">
                       <div className="w-full h-[200px] bg-gray-200" />
@@ -107,104 +103,101 @@ export default function PopularEventsSection() {
           )}
 
           {/* No Events */}
-          {!isLoading &&
-            !isError &&
-            popularEvents.length === 0 && (
-              <div className="flex items-center justify-center min-h-[250px]">
-                <p className="poppins-medium text-[16px] text-[var(--color-gray)]">
-                  No events available.
-                </p>
-              </div>
-            )}
+          {!isLoading && !isError && popularEvents.length === 0 && (
+            <div className="flex items-center justify-center min-h-[250px]">
+              <p className="poppins-medium text-[16px] text-[var(--color-gray)]">
+                No events available.
+              </p>
+            </div>
+          )}
 
           {/* Swiper */}
-          {!isLoading &&
-            !isError &&
-            popularEvents.length > 0 && (
-              <Swiper
-                modules={[FreeMode]}
-                className="featured-event-slider"
-                slidesPerView="auto"
-                spaceBetween={20}
-                freeMode
-                grabCursor
-                watchOverflow
-              >
-                {popularEvents.map((event) => (
-                  <SwiperSlide
-                    key={event.id}
-                    className="!w-[280px] sm:!w-[312px]"
-                  >
-                    <div className="bg-white rounded-[20px] overflow-hidden shadow-[4px_0px_0px_0px_rgba(0,0,0,0.08)]">
-                      {/* Image */}
-                      <div className="relative">
-                        <Link href={event.link}>
-                          <img
-                            src={event.image}
-                            alt={event.title}
-                            className="w-full h-auto object-cover"
-                          />
-                        </Link>
+          {!isLoading && !isError && popularEvents.length > 0 && (
+            <Swiper
+              modules={[FreeMode]}
+              className="featured-event-slider"
+              slidesPerView="auto"
+              spaceBetween={20}
+              freeMode
+              grabCursor
+              watchOverflow
+            >
+              {popularEvents.map((event) => (
+                <SwiperSlide
+                  key={event.id}
+                  className="!w-[280px] sm:!w-[312px]"
+                >
+                  <div className="bg-white rounded-[20px] overflow-hidden shadow-[4px_0px_0px_0px_rgba(0,0,0,0.08)]">
+                    {/* Image */}
+                    <div className="relative">
+                      <Link href={event.link}>
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-auto object-cover"
+                        />
+                      </Link>
 
-                        {/* Date */}
-                        <div className="absolute top-4 left-4 w-[56px] h-[56px] rounded-lg bg-white flex flex-col items-center justify-center">
-                          <span className="poppins-semibold text-[12px] leading-none text-[var(--color-violetred-500)]">
-                            {event.date}
+                      {/* Date */}
+                      <div className="absolute top-4 left-4 w-[56px] h-[56px] rounded-lg bg-white flex flex-col items-center justify-center">
+                        <span className="poppins-semibold text-[12px] leading-none text-[var(--color-violetred-500)]">
+                          {event.date}
+                        </span>
+
+                        <span className="poppins-medium text-[11px] leading-none text-[var(--color-electric-700)] mt-2 uppercase">
+                          {event.month}
+                        </span>
+                      </div>
+
+                      {/* Wishlist */}
+                      <button
+                        type="button"
+                        className="absolute top-4 right-4 w-[36px] h-[36px] rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center"
+                      >
+                        <Heart className="w-4 h-4 text-white" />
+                      </button>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-5">
+                      <h3 className="poppins-semibold text-[20px] text-[var(--color-heading)] mb-2">
+                        {event.title}
+                      </h3>
+
+                      <div className="flex items-center gap-2">
+                        <MapPinned className="w-4 h-4 text-[var(--color-gray)]" />
+
+                        <span className="poppins-medium text-[16px] text-[var(--color-gray)]">
+                          {event.location}
+                        </span>
+                      </div>
+
+                      {/* Bottom */}
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="poppins-semibold text-[20px] text-[var(--color-heading)]">
+                            From
                           </span>
 
-                          <span className="poppins-medium text-[11px] leading-none text-[var(--color-electric-700)] mt-2 uppercase">
-                            {event.month}
+                          <span className="poppins-semibold text-[20px] text-[#8E67F8] ml-1">
+                            {event.price}
                           </span>
                         </div>
 
-                        {/* Wishlist */}
                         <button
                           type="button"
-                          className="absolute top-4 right-4 w-[36px] h-[36px] rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center"
+                          onClick={() => handleAddToCart(event?.id)}
+                          className="w-[50px] h-[50px] rounded-full bg-[var(--color-electric-600)] flex items-center justify-center hover:bg-[var(--color-electric-700)] duration-300"
                         >
-                          <Heart className="w-4 h-4 text-white" />
+                          <Plus className="w-5 h-5 text-white" />
                         </button>
                       </div>
-
-                      {/* Content */}
-                      <div className="p-5 flex flex-col h-[240px]">
-                        <h3 className="poppins-semibold text-[20px] text-[var(--color-heading)] mb-2 min-h-[72px]">
-                          {event.title}
-                        </h3>
-
-                        <div className="flex items-center gap-2 mb-2">
-                          <MapPinned className="w-4 h-4 text-[var(--color-gray)]" />
-
-                          <span className="poppins-medium text-[16px] text-[var(--color-gray)]">
-                            {event.location}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center justify-between mt-auto">
-                          <div>
-                            <span className="poppins-semibold text-[20px]">
-                              From
-                            </span>
-
-                            <span className="poppins-bold text-[20px] text-[var(--color-electric-600)] ml-1">
-                              ₹{event.price.toLocaleString("en-IN")}
-                            </span>
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => handleAddToCart(event.id)}
-                            className="w-[50px] h-[50px] rounded-full bg-[var(--color-electric-600)] flex items-center justify-center hover:bg-[var(--color-electric-700)] duration-300"
-                          >
-                            <Plus className="w-5 h-5 text-white" />
-                          </button>
-                        </div>
-                      </div>
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            )}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </div>
     </section>

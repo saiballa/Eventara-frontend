@@ -1,3 +1,4 @@
+// Landing page Categories Section props
 export type Category = {
   _id: string;
   categoryName: string;
@@ -17,10 +18,17 @@ export type CategoriesSectionProps = {
   handleCategoryChange: (categoryId: string) => void;
 };
 
+// Landing page Featured Section props
 export interface FeaturedEventsSectionProps {
+  selectedCategory?: string;
+}
+
+// Event page Railscards Section props
+export interface RailEventsSectionProps {
   selectedCategory: string;
 }
 
+// Events page props
 export interface Event {
   _id: string;
   title: string;
@@ -48,4 +56,47 @@ export interface EventsResponse {
     hasPreviousPage: boolean;
   };
   data: Event[];
+}
+
+//AuthModal Props type
+export interface AuthModalPropsType{
+  isOpen:boolean;
+  initialTab:string;
+}
+
+export type AuthTab = "login" | "signup";
+
+export interface SignupUserResponse{
+  success: boolean;
+  message: string;
+  data:{
+    id:string;
+    name:string;
+    email:string;
+    role:string;
+  }
+}
+
+export interface LoginUserResponse{
+  success: boolean;
+  message: string;
+  data:{
+    user:{
+      id:string;
+    name:string;
+    email:string;
+    role:string;
+    },
+    accessToken:string;
+    refreshToken:string;
+  }
+}
+
+// Auth state
+export type UserRole = "user";
+
+export interface AuthState {
+  isAuthenticated: boolean;
+  email: string | null;
+  role: UserRole | null;
 }

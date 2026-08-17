@@ -1,3 +1,5 @@
+
+import AuthModal from "@/app/components/auth/authModal";
 export default function ContactPage() {
   return (
     <>
